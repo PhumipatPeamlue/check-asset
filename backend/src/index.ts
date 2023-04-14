@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
 import * as path from "path";
+import cors from "cors";
 
 import { MongoService } from "./mongo_service/service";
 import { Handler } from "./handler/handler";
@@ -16,6 +17,7 @@ const handler = new Handler(mongoService);
 
 const app: Express = express();
 app.use(express.json());
+app.use(cors());
 
 app.post("/add", handler.addNewAsset());
 app.get("/assets", handler.getAssets());
